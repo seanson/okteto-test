@@ -3,4 +3,10 @@ name: okteto-test-build
 deploy:
   image: ghcr.io/burstsms/pipeline-runner:main
   commands:
-    - okteto deploy --build --log-level debug --file backend/test_domain/okteto.yml
+    - okteto deploy --dependencies --log-level debug --
+
+dependencies:
+  frontend:
+    manifest: backend/test_domain/okteto.yml
+    wait: true
+    timeout: 15m
